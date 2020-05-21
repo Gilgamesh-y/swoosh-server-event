@@ -42,9 +42,8 @@ abstract class BaseServer
     {
         $kernel = new Kernel($this->app);
         $kernel->bootstrap();
-        // $this->app->active('redis_pool');
-        $this->app->active('db_pool');
-        $this->app->active('mq_receiver');
+        $kernel->active();
+        $this->app->active('snowflake', $server->worker_id);
     }
 
     /**
